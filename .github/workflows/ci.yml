@@ -13,4 +13,6 @@ jobs:
         - name: "setup node js "
           uses: actions/setup-node@v5
           with: 
-            node-version: '21' 
+            node-version: '21'
+        - name: "chk node version"
+          run: node --version
