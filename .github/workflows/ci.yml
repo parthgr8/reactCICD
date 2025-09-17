@@ -16,3 +16,8 @@ jobs:
             node-version: '21'
         - name: "chk node version"
           run: node --version
+        - name: "clone Repositry"
+          uses: actions/checkout@v1
+        - name: "show files and folders"
+          run: ls
+          
