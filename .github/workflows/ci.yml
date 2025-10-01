@@ -25,7 +25,7 @@ jobs:
         - name: "run build"
           run: npm run build 
         - name: "upload project_ready build files"
-          uses: actions/upload-artifact
+          uses: actions/upload-artifact@v4
           with: 
             name: build
             path: Dist
