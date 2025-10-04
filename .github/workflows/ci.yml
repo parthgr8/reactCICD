@@ -17,7 +17,7 @@ jobs:
         - name: "chk node version"
           run: node --version
         - name: "clone Repositry"
-          uses: actions/checkout@v1
+          uses: actions/checkout@v4
         - name: "show files and folders"
           run: ls
         - name: "install dependencies"
