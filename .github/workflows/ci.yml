@@ -1,32 +1,31 @@
 name: "sample react CI pipeline"
 
 on:
-  push: 
+  push:
     branches:
       - main
       - master
 
 jobs:
-    build-and-test:
-      runs-on: ubuntu-latest
-      steps:
-        - name: "setup node js "
-          uses: actions/setup-node@v5
-          with: 
-            node-version: '21'
-        - name: "chk node version"
-          run: node --version
-        - name: "clone Repositry"
-          uses: actions/checkout@v1
-        - name: "show files and folders"
-          run: ls
-        - name: "install dependencies"
-          run: npm install 
-        - name: "run build"
-          run: npm run build 
-        - name: "upload project_ready build files"
-          uses: actions/upload-artifact@v4
-          with: 
-            name: build
-            path: dist
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v5
+        with:
+          node-version: '21'
 
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+
+      - name: "Install dependencies"
+        run: npm install
+
+      - name: "Build project"
+        run: npm run build
+
+      - name: "Upload build artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build
