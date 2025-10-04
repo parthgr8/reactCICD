@@ -1,0 +1,43 @@
+name: "CD pipeline"
+on: 
+    workflow_run: 
+        workflows: ["sample react CI pipeline"]
+        types: 
+            - completed
+
+jobs: 
+    deploy:
+        runs-on: ubuntu-latest
+        environment: production
+
+        steps: 
+            - name: "setup node js "
+              uses: actions/setup-node@v5
+              with: 
+                node-version: "21"
+            - name: "setup vercel cli"
+              run: npm i -g vercel@latest
+
+            - name: "Download build files"
+              uses: actions/download-artifacts:@v4
+              with: 
+                name: build
+            - name: "Deploy to vercel"
+              run: vercel --prod --token=${{secrets.VERCEL_TOKEN}} --confirm --name=cicdProject
+              
+#  When you run vercel manually (from your local terminal) for the first time, the CLI usually asks interactive questions, like:
+
+# ? In which scope do you want to deploy?
+# ? Link to existing project? [Y/n]
+# ? What’s your project’s name?
+
+
+# But in CI/CD (like GitHub Actions), there’s no human to press Y/N — so we use:
+
+# --confirm
+
+# ✅ What it does
+
+# It automatically confirms all those interactive prompts using default or previously linked project settings.
+
+# So the command runs non-interactively, perfect for automation.
