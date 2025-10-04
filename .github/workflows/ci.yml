@@ -24,6 +24,8 @@ jobs:
           run: npm install 
         - name: "run build"
           run: npm run build 
+        - name: "Verify build output"
+          run: ls -R
         - name: "upload project_ready build files"
           uses: actions/upload-artifact@v4
           with: 
