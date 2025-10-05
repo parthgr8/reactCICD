@@ -23,6 +23,7 @@ jobs:
               with: 
                 name: build
                 run-id: ${{ github.event.workflow_run.id }}
+                github-token: ${{github.token}}
 # GitHub triggers the CD pipeline based on the CI pipeline’s completion.
 # However, the artifact storage is scoped to that CI run, and the CD job must explicitly reference the CI run’s ID to fetch it.
 
