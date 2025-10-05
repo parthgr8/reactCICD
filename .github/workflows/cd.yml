@@ -25,11 +25,10 @@ jobs:
                 run-id: ${{ github.event.workflow_run.id }}
                 github-token: ${{github.token}}
 # GitHub triggers the CD pipeline based on the CI pipeline’s completion.
-# However, the artifact storage is scoped to that CI run, and the CD job must explicitly reference the CI run’s ID to fetch it.
-
+# However, the artifact storage is scoped to that CI run, and the CD job must explicitly reference the CI run’s ID to fetch it. 
 # if you don’t specify the run-id, the download step looks for artifacts inside the CD run itself, not in the CI one
             - name: "Deploy to vercel"
-              run: vercel --prod --token=${{secrets.VERCEL_TOKEN}} --confirm --name=cicdProject
+              run: vercel --prod --token=${{secrets.VERCEL_TOKEN}} --yes --name=cicd-project
               
 #  When you run vercel manually (from your local terminal) for the first time, the CLI usually asks interactive questions, like:
 
